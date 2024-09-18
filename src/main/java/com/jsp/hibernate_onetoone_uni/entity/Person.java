@@ -22,6 +22,6 @@ public class Person {
 	
 	@JoinColumn(name="voter_id")
 	@OneToOne
-	VoterId V;
+	private VoterId V;
 
 }

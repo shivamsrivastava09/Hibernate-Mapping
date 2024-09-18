@@ -1,5 +1,7 @@
 package com.jsp.hibernate_onetoone_uni.entity;
 
+import java.time.LocalDate;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import lombok.AllArgsConstructor;
@@ -15,8 +17,8 @@ public class VoterId {
 	@Id
 	private int idNumber;
 	private String address;
-	private String dob;
+	private LocalDate dob;
 	private String gender;
-	private String doi;
+	private LocalDate doi;
 
 }
