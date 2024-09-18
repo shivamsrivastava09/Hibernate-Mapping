@@ -28,5 +28,21 @@ public class PersonVoterDao {
 			return null;
 		}
 	}
+	
+	public VoterId saveVoterDao(VoterId voter) {
+		et.begin();
+		em.persist(voter);
+		et.commit();
+		return voter;
+	}
+	
+	public Person savePersonDao(Person person, int voterId) {
+		VoterId voter=em.find(VoterId.class, voterId);
+		person.setV(voter);
+		et.begin();
+		em.persist(person);
+		et.commit();
+		return person;
+	}
 
 }
