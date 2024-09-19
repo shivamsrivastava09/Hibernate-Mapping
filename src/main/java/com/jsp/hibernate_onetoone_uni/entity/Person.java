@@ -19,6 +19,7 @@ public class Person {
 	private String name;
 	private String email;
 	private long phone;
+	private int age;
 	
 	@JoinColumn(name="voter_id")
 	@OneToOne
