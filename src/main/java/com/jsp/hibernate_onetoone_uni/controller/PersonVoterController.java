@@ -16,7 +16,7 @@ public class PersonVoterController {
 		Scanner sc = new Scanner(System.in);
 
 		while (true) {
-			System.out.println("1. TO INSERT THE PERSON AND VOTER DETAILS\n2. TO INSERT VOTER\n3. TO INSERT PERSON WITH THE VOTER ID\n4. TO EXIT THE APPLICATION");
+			System.out.println("1. TO INSERT THE PERSON AND VOTER DETAILS\n2. TO INSERT VOTER\n3. TO INSERT PERSON WITH THE VOTER ID\n4.TO DISPLAY THE PERSON DETAILS BY ID\n5. TO DELETE VOTER BY ID\n6. TO EXIT THE APPLICATION");
 			int option = sc.nextInt();
 			
 			switch (option) {
@@ -42,7 +42,7 @@ public class PersonVoterController {
 				String email=sc.next();
 				System.out.println("ENTER THE PHONE NUMBER OF THE PERSON");
 				long no=sc.nextLong();
-				Person person=new Person(pId, pName, email, no, voter);
+				Person person=new Person(pId, pName, email, no,0, voter);
 				System.out.println(dao.savePersonVoterDao(voter,person));
 				break;
 			case 2:
@@ -60,6 +60,11 @@ public class PersonVoterController {
 				VoterId nVoter = new VoterId(nId, nAddress, LocalDate.parse(nDob), nGender,LocalDate.parse(nDoi));
 				System.out.println(dao.saveVoterDao(nVoter)); 
 				break;
+			case 4:
+				System.out.println("ENTER THE PERSON ID TO SEE ITS DETAILS");
+				int pNId=sc.nextInt();
+				System.out.println(dao.getPersonDetailsById(pNId));
+				break;
 			case 3:
 				System.out.println("ENTER THE ID FOR THE PERSON");
 				int npId=sc.nextInt();
@@ -70,14 +75,25 @@ public class PersonVoterController {
 				String nEmail=sc.next();
 				System.out.println("ENTER THE PHONE NUMBER OF THE PERSON");
 				long nNo=sc.nextLong();
-				Person nPerson=new Person(npId, npName, nEmail, nNo, null);
+				Person nPerson=new Person(npId, npName, nEmail, nNo,0, null);
 				System.out.println("ENTER THE VOTER ID FOR THIS PERSON");
 				int vId=sc.nextInt();
 				System.out.println(dao.savePersonDao(nPerson,vId));
 				break;
-			case 4:
+			case 6:
 				System.out.println("THANK YOU.....");
 				return;
+			case 5:
+				System.out.println("ENTER THE VOTER ID TO DELETE");
+				int vNId=sc.nextInt();
+				boolean a=dao.deleteVoteById(vNId);
+				if(a) {
+					System.out.println("DATA DELETED....");
+				}
+				else {
+					System.out.println("VOTER ID NOT FOUND....");
+				}
+				break;
 			}
 		}
 
